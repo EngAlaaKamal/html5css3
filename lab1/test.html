@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+ <title>Media Player</title>
+ <style>
+  body {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ height: 100vh;
+ background-color: #f0f0f0;
+ font-family: Arial, sans-serif;
+ margin: auto;
+}
+
+ 
+
+#controls {
+ justify-content: center;
+ display: flex;
+ gap: 10px;
+}
+
+.a {
+ margin: 10px 0;
+ display: block;
+ margin: 5px auto;
+ width: 300px;
+ height: 30px;
+ border: none;
+ background-color: #887042;
+ color: white;
+ border-radius: 20px;
+}
+section{
+    background-color: #a4864d;
+    width: 500px;
+    height: 580px;
+}
+.ad{
+width: 400px;
+  margin-left: 50px;
+}
+img{
+     
+    display: block;
+    margin: 10px auto;
+    width:200px;
+    height: 200px;
+    border-radius: 20px;
+    margin-top: 40px;
+}
+ .d{
+    display: inline-block;
+    margin: 20px auto ;
+    
+     
+ }
+ .icon{
+    color: white;
+     
+ }
+ .center{
+    display: inline-block;
+    margin-left: 170px;
+    align-content: center;
+ }
+ .btn{
+    border: none;
+    border-radius: 10px;
+    width: 30px;
+ }
+ 
+
+ </style>
+</head>
+<body>
+<section> 
+ 
+
+<img   id="imgg" src="img1.jpg" alt="Image Description">
+<input type="range" min="0" max="100" value="0" class="slider ad" id="durationSlider"><br>
+<audio id="myAudio">
+ <source id="switchh" src="audio1.mp3" type="audio/mpeg">
+ Your browser does not support the audio element.
+</audio>
+
+ 
+
+<div class="d" id="controls">
+    <button class="btn" onclick="playAudio()" type="button"><i class="fas fa-play"></i></button>
+    <button class="btn" onclick="pauseAudio()" type="button"><i class="fas fa-pause"></i></button>
+    <button class="btn" onclick="stopAudio()" type="button"><i class="fas fa-stop"></i></button>
+    <button class="btn" onclick="muteAudio()" type="button"><i class="fas fa-volume-mute"></i></button>
+    
+</div>
+
+ 
+
+<div class="center">
+ <i class="fas fa-volume-up icon"></i><input type="range" min="0" max="100" value="100" class="slider" id="volumeSlider"><i class="fas fa-volume-down icon"></i><br>
+ <i class="fas fa-fast-forward icon"></i><input type="range" min="0.5" max="2" value="1" step="0.1" class="slider" id="speedSlider"><i class="fas fa-fast-backward icon"></i><br>
+</div>
+
+
+<div id="allbtn">
+    <button class="a" onclick="changeAudio('img3.jpg','audioremi.mp3')" type="button">Remi</button>
+    <button class="a" onclick="changeAudio('img1.jpg','audio1.mp3')" type="button"> La Tabkey </button>
+    <button class="a" onclick="changeAudio('img2.jpg','audio2.mp3')" type="button"> ElHaddiqa </button>
+    <button class="a" onclick="changeAudio('img4.jpg','audio4.mp3')" type="button"> Ahd ELasdqaa </button>
+ 
+</div>
+
+</section>
+<script>
+var myAudio = document.getElementById("myAudio");
+
+function playAudio() {
+ myAudio.play();
+}
+
+function pauseAudio() {
+ myAudio.pause();
+}
+
+function stopAudio() {
+ myAudio.pause();
+ myAudio.currentTime = 0;
+}
+
+function muteAudio() {
+ myAudio.muted = !myAudio.muted;
+}
+
+document.getElementById("durationSlider").oninput = function() {
+ myAudio.currentTime = this.value * myAudio.duration / 100;
+}
+
+document.getElementById("volumeSlider").oninput = function() {
+ myAudio.volume = this.value / 100;
+}
+
+document.getElementById("speedSlider").oninput = function() {
+ myAudio.playbackRate = this.value;
+}
+
+var audio = document.getElementById('myAudio');
+ var durationRange = document.getElementById('durationSlider');
+
+ audio.addEventListener('timeupdate', () => {
+   const currentTime = audio.currentTime;
+   const totalDuration = audio.duration;
+   const percentage = (currentTime / totalDuration) * 100;
+   durationRange.value = percentage;
+ });
+
+ function changeAudio(imgsrc, audiosrc){
+    var imgg = document.getElementById("imgg");
+    var switchh = document.getElementById("switchh");
+    imgg.src = imgsrc;
+    switchh.src = audiosrc;
+    myAudio.load();
+ 
+ }
+
+
+</script>
+
+</body>
+</html>

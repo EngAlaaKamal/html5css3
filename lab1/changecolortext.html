@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Color Change</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .color-block {
+      width: 20px;
+      height: 20px;
+      display: inline-block;
+      margin-right: 10px;
+      border-radius: 50%;
+      
+    }
+
+    p {
+      font-size: 18px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Red color block and range -->
+  <div class="color-block" id="redColorBlock"></div>
+  <label for="redRange">Red:</label>
+  <input type="range" id="redRange" min="0" max="255" step="1" value="0" oninput="changeColor()">
+
+  <br>
+
+  <!-- Green color block and range -->
+  <div class="color-block" id="greenColorBlock"></div>
+  <label for="greenRange">Green:</label>
+  <input type="range" id="greenRange" min="0" max="255" step="1" value="0" oninput="changeColor()">
+
+  <br>
+
+  <!-- Blue color block and range -->
+  <div class="color-block" id="blueColorBlock"></div>
+  <label for="blueRange">Blue:</label>
+  <input type="range" id="blueRange" min="0" max="255" step="1" value="0" oninput="changeColor()">
+
+  <br>
+
+  <!-- The paragraph with dynamically changing color -->
+  <p id="colorText">This text will change color!</p>
+
+  <script>
+    // Function to change the text color based on the input ranges
+    function changeColor() {
+      var redValue = document.getElementById('redRange').value;
+      var greenValue = document.getElementById('greenRange').value;
+      var blueValue = document.getElementById('blueRange').value;
+
+      var colorText = document.getElementById('colorText');
+      colorText.style.color = `rgb(${redValue},${greenValue},${blueValue})`;
+
+      // Update the color blocks
+      document.getElementById('redColorBlock').style.backgroundColor = `rgb(${redValue}, 0, 0)`;
+      document.getElementById('greenColorBlock').style.backgroundColor = `rgb(0, ${greenValue}, 0)`;
+      document.getElementById('blueColorBlock').style.backgroundColor = `rgb(0, 0, ${blueValue})`;
+    }
+  </script>
+
+</body>
+</html>
+

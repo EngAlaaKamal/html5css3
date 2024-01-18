@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Registration Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    form {
+      max-width: 400px;
+      margin: 20px auto;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+      background-color: #4caf50;
+      color: white;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    .error {
+      color: #ff0000;
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <form id="registrationForm"  method="post" onsubmit="return validateForm()">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username"  value="" required>
+     <!-- Display error message for username -->
+     <div id="usernameError" class="error"></div>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" value="" required>
+     <!-- Display error message for email -->
+     <div id="emailError" class="error"></div>
+
+    <input type="submit" value="Submit">
+  </form>
+
+  <script>
+    function validateForm() {
+      var username = document.getElementById('username').value;
+      var email = document.getElementById('email').value;
+
+      var usernameRegex = /^[a-zA-Z0-9_]{3,20}$/;
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      var isValid = true;
+
+      if (!usernameRegex.test(username)) {
+        document.getElementById('usernameError').innerHTML = 'Username must be 3-20 characters long and can contain letters, numbers, and underscores.';
+        isValid = false;
+      } else {
+        document.getElementById('usernameError').innerHTML = '';
+      }
+
+      if (!emailRegex.test(email)) {
+        document.getElementById('emailError').innerHTML = 'Please enter a valid email address.';
+        isValid = false;
+      } else {
+        document.getElementById('emailError').innerHTML = '';
+      }
+
+      return isValid;
+    }
+  </script>
+
+</body>
+</html>

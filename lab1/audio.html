@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Media Player</title>
+ <style>
+  body {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ height: 100vh;
+ background-color: #f0f0f0;
+ font-family: Arial, sans-serif;
+}
+
+h2 {
+ margin-top: 20px;
+}
+
+#controls {
+ display: flex;
+ gap: 10px;
+}
+
+button {
+ margin: 10px 0;
+}
+
+ </style>
+</head>
+<body>
+
+<h2>HTML5 Audio Player</h2>
+
+<audio id="myAudio">
+ <source src="your-audio-file.mp3" type="audio/mpeg">
+ Your browser does not support the audio element.
+</audio>
+
+<button onclick="playAudio()" type="button">Play</button>
+<button onclick="pauseAudio()" type="button">Pause</button>
+<button onclick="stopAudio()" type="button">Stop</button>
+<button onclick="muteAudio()" type="button">Mute</button>
+
+<br><br>
+
+Duration: <input type="range" min="0" max="100" value="0" class="slider" id="durationSlider"><br>
+Volume: <input type="range" min="0" max="100" value="100" class="slider" id="volumeSlider"><br>
+Speed: <input type="range" min="0.5" max="2" value="1" step="0.1" class="slider" id="speedSlider"><br>
+
+<script>
+var myAudio = document.getElementById("myAudio");
+
+function playAudio() {
+ myAudio.play();
+}
+
+function pauseAudio() {
+ myAudio.pause();
+}
+
+function stopAudio() {
+ myAudio.pause();
+ myAudio.currentTime = 0;
+}
+
+function muteAudio() {
+ myAudio.muted = !myAudio.muted;
+}
+
+document.getElementById("durationSlider").oninput = function() {
+ myAudio.currentTime = this.value * myAudio.duration / 100;
+}
+
+document.getElementById("volumeSlider").oninput = function() {
+ myAudio.volume = this.value / 100;
+}
+
+document.getElementById("speedSlider").oninput = function() {
+ myAudio.playbackRate = this.value;
+}
+</script>
+
+</body>
+</html>
+
+
+
+
+
